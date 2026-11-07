@@ -1,0 +1,104 @@
+% ---------------- кодировки и язык ----------------
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+% ---------------- поля, интервалы, отступы ----------------
+\usepackage[left=30mm,right=15mm,top=20mm,bottom=20mm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+% ---------------- математика, таблицы, списки ----------------
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{enumitem}
+\setlist{nosep}
+
+% ---------------- рисунки и графики ----------------
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\graphicspath{{img/}}
+
+% ---------------- заголовки ----------------
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\Large}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize}{\thesubsubsection}{1em}{}
+
+% ---------------- подписи ----------------
+\usepackage{caption}
+\captionsetup{labelsep=colon}
+\addto\captionsrussian{%
+	\renewcommand{\figurename}{Рис.}%
+	\renewcommand{\tablename}{Таблица}%
+	\renewcommand{\contentsname}{Содержание}%
+	\renewcommand{\refname}{Список литературы}%
+}
+
+% ---------------- листинги ----------------
+\usepackage{xcolor}
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Листинг}
+\lstset{
+	language=Java,
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\color{blue},
+	stringstyle=\color{red},
+	commentstyle=\color{green!50!black},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	numbersep=6pt,
+	backgroundcolor=\color{gray!5},
+	frame=single,
+	rulecolor=\color{gray!30},
+	tabsize=4,
+	breaklines=true,
+	showstringspaces=false,
+	captionpos=b,
+	extendedchars=true,
+	inputencoding=utf8,
+	literate=
+		{а}{{\cyra}}1 {А}{{\CYRA}}1 {б}{{\cyrb}}1 {Б}{{\CYRB}}1 {в}{{\cyrv}}1 {В}{{\CYRV}}1
+		{г}{{\cyrg}}1 {Г}{{\CYRG}}1 {д}{{\cyrd}}1 {Д}{{\CYRD}}1 {е}{{\cyre}}1 {Е}{{\CYRE}}1
+		{ё}{{\cyryo}}1 {Ё}{{\CYRYO}}1 {ж}{{\cyrzh}}1 {Ж}{{\CYRZH}}1 {з}{{\cyrz}}1 {З}{{\CYRZ}}1
+		{и}{{\cyri}}1 {И}{{\CYRI}}1 {й}{{\cyrishrt}}1 {Й}{{\CYRISHRT}}1 {к}{{\cyrk}}1 {К}{{\CYRK}}1
+		{л}{{\cyrl}}1 {Л}{{\CYRL}}1 {м}{{\cyrm}}1 {М}{{\CYRM}}1 {н}{{\cyrn}}1 {Н}{{\CYRN}}1
+		{о}{{\cyro}}1 {О}{{\CYRO}}1 {п}{{\cyrp}}1 {П}{{\CYRP}}1 {р}{{\cyrr}}1 {Р}{{\CYRR}}1
+		{с}{{\cyrs}}1 {С}{{\CYRS}}1 {т}{{\cyrt}}1 {Т}{{\CYRT}}1 {у}{{\cyru}}1 {У}{{\CYRU}}1
+		{ф}{{\cyrf}}1 {Ф}{{\CYRF}}1 {х}{{\cyrh}}1 {Х}{{\CYRH}}1 {ц}{{\cyrc}}1 {Ц}{{\CYRC}}1
+		{ч}{{\cyrch}}1 {Ч}{{\CYRCH}}1 {ш}{{\cyrsh}}1 {Ш}{{\CYRSH}}1 {щ}{{\cyrshch}}1 {Щ}{{\CYRSHCH}}1
+		{ъ}{{\cyrhrdsn}}1 {Ъ}{{\CYRHRDSN}}1 {ы}{{\cyrery}}1 {Ы}{{\CYRERY}}1 {ь}{{\cyrsftsn}}1 {Ь}{{\CYRSFTSN}}1
+		{э}{{\cyrerev}}1 {Э}{{\CYREREV}}1 {ю}{{\cyryu}}1 {Ю}{{\CYRYU}}1 {я}{{\cyrya}}1 {Я}{{\CYRYA}}1
+		{—}{{\textemdash}}1 {→}{{$\to$}}1 {«}{{<<}}1 {»}{{>>}}1
+}
+
+% ---------------- ссылки ----------------
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=green!60!black,
+	urlcolor=blue,
+	pdftitle={Отчет по лабораторной работе №1},
+	pdfauthor={Храмов В.Д.}
+}
+
+% Поколение автомата в консольном виде (как печатает программа): файл figures/<имя>.txt.
+% Ширина символа моноширинного шрифта 0.525em, клетка "# " = 1.05em, поэтому межстрочный
+% интервал 1.05 размера шрифта делает клетки квадратными.
+\lstdefinestyle{console}{
+	language={}, numbers=none, frame=single, rulecolor=\color{gray!50},
+	backgroundcolor=\color{gray!5}, framesep=2pt, xleftmargin=2pt, xrightmargin=2pt,
+	breaklines=false, columns=fullflexible, keepspaces=true, showlines=true
+}
+\newcommand{\consolemedium}{\fontsize{9}{10.5}\selectfont\ttfamily}
+\newcommand{\consolesmall}{\fontsize{7}{7.35}\selectfont\ttfamily}
+\newcommand{\consoletiny}{\fontsize{5.2}{5.46}\selectfont\ttfamily}
+\newcommand{\console}[2][\consolesmall]{\lstinputlisting[style=console,basicstyle=#1]{figures/#2.txt}}
+
+% Клетка поля на рисунках (для схемы окрестности)
+\newcommand{\nbcell}[3]{\draw[thick] (#1,#2) rectangle ++(1,1); \node at (#1+0.5,#2+0.5) {#3};}

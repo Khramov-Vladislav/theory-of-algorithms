@@ -33,8 +33,8 @@ public class Experiments {
 		String mode = args.length > 0 ? args[0] : "";
 		switch (mode) {
 			case "periods" -> periods(arg(args, 1, 12), arg(args, 2, 100), arg(args, 3, 100_000));
-			case "population" -> population(arg(args, 1, 50), arg(args, 2, 1000), arg(args, 3, 20));
-			case "damage" -> damage(arg(args, 1, 100), arg(args, 2, 400), arg(args, 3, 10));
+			case "population" -> population(arg(args, 1, 50), arg(args, 2, 100), arg(args, 3, 20));
+			case "damage" -> damage(arg(args, 1, 100), arg(args, 2, 100), arg(args, 3, 10));
 			default -> {
 				println("Использование: periods [maxSize] [seeds] [maxSteps]");
 				println("               population [size] [steps] [seeds]");
@@ -116,7 +116,7 @@ public class Experiments {
 
 	/**
 	 * Для плотностей 10, 30, 50, 70, 90 % считает среднюю по seeds прогонам долю живых клеток
-	 * в каждом поколении. Печатает таблицу (каждое 10-е поколение) в формате для pgfplots:
+	 * в каждом поколении. Печатает таблицу (каждое поколение) в формате для pgfplots:
 	 * {@code t d10 d30 d50 d70 d90}.
 	 *
 	 * @param size  ширина поля
@@ -143,7 +143,7 @@ public class Experiments {
 			print(" d" + density);
 		}
 		println();
-		for (int t = 0; t <= steps; t += 10) {
+		for (int t = 0; t <= steps; t++) {
 			print(t);
 			for (int d = 0; d < densities.length; d++) {
 				print(String.format(Locale.US, " %.4f", average[d][t]));
@@ -157,7 +157,7 @@ public class Experiments {
 	/**
 	 * Запускает пары автоматов с одинаковым случайным полем (плотность 50 %), но во втором
 	 * изменена одна центральная клетка. Печатает среднее по seeds прогонам расстояние Хэмминга
-	 * (число различающихся клеток) в каждом 10-м поколении: {@code t h}.
+	 * (число различающихся клеток) в каждом поколении: {@code t h}.
 	 *
 	 * @param size  ширина поля
 	 * @param steps число поколений
@@ -182,7 +182,7 @@ public class Experiments {
 		}
 
 		println("t h");
-		for (int t = 0; t <= steps; t += 10) {
+		for (int t = 0; t <= steps; t++) {
 			println(String.format(Locale.US, "%d %.2f", t, average[t]));
 		}
 	}
