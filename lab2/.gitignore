@@ -1,0 +1,72 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# LaTeX
+# Compilation artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.fmt
+*.fot
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.nav
+*.snm
+*.synctex.gz
+*.synctex(busy)
+*.run.xml
+*.xdv
+*.4ct
+*.4tc
+*.idv
+*.lg
+*.tmp
+*.xref
+*.dvi
+*.ps
+
+# Build directories
+_build/
+build/
+
+# draw.io
+# Temporary and backup files
+*.bkp
+*.drawio.bkp
+*.drawio.dtmp
+*.drawio~ 
+*.drawio.bak
+
+# Logisim Evolution
+# Temporary and backup files
+*.circ.bak
+*.circ~
+*.circ.tmp
+
+# IDEs and editors
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
