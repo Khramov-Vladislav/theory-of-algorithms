@@ -70,3 +70,5 @@ build/
 *.temp
 *.bak
 *.backup
+
+examples/
