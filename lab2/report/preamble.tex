@@ -1,0 +1,39 @@
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+\usepackage[left=30mm,right=15mm,top=20mm,bottom=20mm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+\usepackage{amsmath,amssymb}
+\usepackage{array,tabularx}
+\usepackage{enumitem}
+\setlist{nosep}
+
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\Large}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize}{\thesubsubsection}{1em}{}
+
+\usepackage{caption}
+\captionsetup{labelsep=colon}
+\addto\captionsrussian{%
+	\renewcommand{\figurename}{Рис.}%
+	\renewcommand{\tablename}{Таблица}%
+	\renewcommand{\contentsname}{Содержание}%
+}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	pdftitle={Отчет по лабораторной работе №2},
+	pdfauthor={Храмов В.Д.}
+}

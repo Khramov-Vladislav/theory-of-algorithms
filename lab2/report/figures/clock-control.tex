@@ -1,0 +1,72 @@
+\begin{figure}[H]
+	\centering
+	\tikzset{
+		state/.style={draw,circle,minimum size=8mm,inner sep=0pt,font=\small},
+		event/.style={font=\footnotesize,inner sep=2pt},
+		edge/.style={-{Stealth[length=2mm]}}
+	}
+
+	\small Корректировка и останов текущего времени\par
+	\begin{tikzpicture}
+		\node[state] (s0) at (0,0) {$S_{0}$};
+		\node[state] (s1) at (3.4,0) {$S_1$};
+		\node[state] (s2) at (6.8,0) {$S_2$};
+		\node[state] (s3) at (10.2,0) {$S_3$};
+		\node[state] (s10) at (13.6,0) {$S_{10}$};
+		\draw[edge] (-1.0,0) -- (s0);
+		\draw[edge] (s0) -- node[event,above] {$a$} (s1);
+		\draw[edge] (s1) -- node[event,above] {$a,c,d$} (s2);
+		\draw[edge] (s2) -- node[event,above] {$a,c,d$} (s3);
+		\draw[edge] (s3) -- node[event,above] {$a,c,d$} (s10);
+		\draw[edge] (s1) to[loop above] node[event,above] {$b/z_1$} (s1);
+		\draw[edge] (s2) to[loop above] node[event,above] {$b/z_2$} (s2);
+		\draw[edge] (s3) to[loop above] node[event,above] {$b/z_3$} (s3);
+		\draw[edge,rounded corners=3pt]
+			(s10.south) -- (13.6,-0.95) --
+			node[event,below] {$a,b,c,d$} (0,-0.95) -- (s0.south);
+	\end{tikzpicture}
+
+	\medskip
+	Секундомер\par
+	\begin{tikzpicture}
+		\node[state] (s0) at (0,0) {$S_{0}$};
+		\node[state] (s4) at (6.6,0) {$S_4$};
+		\node[state] (s5) at (13.2,0) {$S_5$};
+		\node[state] (s6) at (6.6,-2.0) {$S_6$};
+		\draw[edge] (s0) to[bend left=12] node[event,above] {$b$} (s4);
+		\draw[edge] (s4) to[bend left=12] node[event,below] {$c,d$} (s0);
+		\draw[edge] (s4) to[bend left=12] node[event,above] {$a/z_4$} (s5);
+		\draw[edge] (s5) to[bend left=12] node[event,below] {$a,b,c,d\,/\,z_4$} (s4);
+		\draw[edge] (s4) to[bend left=24] node[event,right] {$b/z_5$} (s6);
+		\draw[edge] (s6) to[bend left=24] node[event,left] {$a,b,d\,/\,z_5$} (s4);
+		\draw[edge] (s6) to[loop right] node[event,right] {$c/z_6$} (s6);
+	\end{tikzpicture}
+
+	\medskip
+	Будильник\par
+	\begin{tikzpicture}
+		\node[state] (s0) at (0,0) {$S_{0}$};
+		\node[state] (s7) at (4.4,0) {$S_{7}$};
+		\node[state] (s8) at (8.8,0) {$S_{8}$};
+		\node[state] (s9) at (13.2,0) {$S_{9}$};
+		\node[state] (s11) at (4.4,-2.0) {$S_{11}$};
+		\draw[edge] (s0) to[bend left=18] node[event,above] {$c$} (s7);
+		\draw[edge] (s7) to[bend left=18] node[event,below] {$d$} (s0);
+		\draw[edge] (s7) -- node[event,above] {$b$} (s8);
+		\draw[edge] (s8) -- node[event,above] {$b,c,d$} (s9);
+		\draw[edge,rounded corners=3pt]
+			(s9.north) -- (13.2,0.95) --
+			node[event,above] {$b,c,d$} (4.62,0.95) -- (s7.north east);
+		\draw[edge] (s7) to[loop,out=-12,in=-48] node[event,right] {$a/z_7$} (s7);
+		\draw[edge] (s8) to[loop below] node[event,below] {$a/z_8$} (s8);
+		\draw[edge] (s9) to[loop below] node[event,below] {$a/z_9$} (s9);
+		\draw[edge] (s7) to[bend left=24] node[event,right] {$c/z_{10}$} (s11);
+		\draw[edge] (s11) to[bend left=24] node[event,left] {$b,c,d$} (s7);
+		\draw[edge] (s11) to[loop right] node[event,right] {$a/z_{11}$} (s11);
+	\end{tikzpicture}
+
+	\caption{Граф конечного автомата управления. Во всех состояниях
+		входы $\tau$ и $\alpha$ образуют петли с выходами $z_{12}$ и $z_{13}$.
+		Петли с выходом $z_0$ опущены.}
+	\label{fig:clock-control}
+\end{figure}
