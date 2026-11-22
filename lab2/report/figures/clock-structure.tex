@@ -1,0 +1,82 @@
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[
+		block/.style={draw,align=center,font=\small,minimum height=11mm,inner sep=3pt},
+		wire/.style={-{Stealth[length=2mm]}},
+		bus/.style={wire,semithick},
+		signal/.style={font=\footnotesize,inner sep=2pt,fill=white},
+	]
+		\node[block,minimum width=2.4cm] (keys) at (1.9,0)
+			{Кнопки $a,b,c$};
+		\node[block,minimum width=4cm] (clock) at (12.5,0)
+			{Генератор и делитель};
+
+		\node[block,minimum width=3.4cm] (encoder) at (1.9,-2.05)
+			{Преобразователь\\входных событий};
+		\node[block,minimum width=3.7cm] (controller) at (7.05,-2.05)
+			{Устройство\\управления};
+		\node[block,minimum width=3.6cm] (timer) at (13.3,-2.05)
+			{Таймер\\сигнализации};
+
+		\node[block,minimum width=3.35cm] (time) at (1.9,-5.65)
+			{Блок текущего\\времени};
+		\node[block,minimum width=3.65cm] (stopwatch) at (6.85,-5.65)
+			{Секундомер\\с триггером $L_9$};
+		\node[block,minimum width=4.25cm] (alarm) at (12.65,-5.65)
+			{Будильник\\с триггером $L_{10}$};
+
+		\node[block,minimum width=5.1cm] (display) at (5.45,-8.55)
+			{Мультиплексор и\\индикаторный преобразователь};
+		\node[block,minimum width=4cm] (sound) at (12.65,-8.55)
+			{Звуковой блок};
+		\node[block,minimum width=3.05cm] (indicator) at (5.45,-10.35)
+			{Индикатор};
+		\node[block,minimum width=3.05cm] (speaker) at (12.65,-10.35)
+			{Излучатель звука};
+
+		\draw[wire] (keys) -- (encoder);
+		\draw[bus] (encoder) -- node[signal,above] {$x,s$} (controller);
+		\draw[wire] (clock.west) -- node[signal,above] {$f_{\mathrm{clk}}$}
+			(7.05,0) -- (controller.north);
+		\draw[wire] (7.05,-0.77) -- (3.27,-0.77) -- (3.27,-1.5);
+		\fill (7.05,-0.77) circle (1.3pt);
+		\draw[wire] (13.3,-0.55) -- node[signal,right] {$f_{\mathrm{clk}}$} (timer.north);
+		\draw[wire] (timer.east) -- (15.65,-2.05) -- (15.65,1.03) --
+			node[signal,above] {$\rho$} (-0.34,1.03) -- (-0.34,-1.86) --
+			(0.2,-1.86);
+		\draw[wire] (time.west) -- (-0.34,-5.65) --
+			node[signal,left] {$\tau$} (-0.34,-2.24) -- (0.2,-2.24);
+		\draw[wire] (controller.east) -- node[signal,above] {$L_8$} (timer.west);
+		\draw[wire] (9.6,-2.05) -- (9.6,-7.65) --
+			node[signal,above] {$L_8$} (11.3,-7.65) -- (11.3,-8);
+		\fill (9.6,-2.05) circle (1.3pt);
+
+		\draw[bus] (5.6,-2.6) -- (5.6,-2.98) --
+			node[signal,above,pos=0.31] {$i_1,i_2,i_3,L_1$} (2.7,-2.98) -- (2.7,-5.1);
+		\draw[bus] (7.35,-2.6) -- node[signal,right,pos=0.53] {$i_4,i_5,i_6$}
+			(7.35,-5.1);
+		\draw[bus] (8.55,-2.6) -- (8.55,-3.15) --
+			node[signal,above,pos=0.75] {$i_7,\ldots,i_{10}$} (12.65,-3.15) -- (12.65,-5.1);
+		\draw[bus] (6.25,-2.6) -- (6.25,-3.62) -- (4.19,-3.62) --
+			node[signal,left,pos=0.27] {$L_2,\ldots,L_7$} (4.19,-8);
+
+		\draw[wire] (clock.east) -- (15.26,0) -- (15.26,-4.24) --
+			node[signal,above,pos=0.14] {$1$ Гц} (1.12,-4.24) -- (1.12,-5.1);
+		\draw[wire] (6.12,-4.24) -- (6.12,-5.1);
+		\fill (6.12,-4.24) circle (1.3pt);
+
+		\draw[bus] (1.9,-6.2) -- (1.9,-7.22) --
+			node[signal,above] {$T$} (3.48,-7.22) -- (3.48,-8);
+		\draw[bus] (6.2,-6.2) -- node[signal,right,pos=0.76] {$B$} (6.2,-8);
+		\draw[bus] (11.1,-6.2) -- (11.1,-7.06) --
+			node[signal,above] {$A$} (7.55,-7.06) -- (7.55,-8);
+		\draw[bus] (3.05,-6.2) -- (3.05,-6.58) --
+			node[signal,below,pos=0.22] {$T,p_{\mathrm M}$} (13.55,-6.58) -- (13.55,-6.2);
+		\draw[bus] (14.1,-6.2) -- node[signal,right] {$p_{\mathrm A},n$} (14.1,-8);
+
+		\draw[wire] (display) -- (indicator);
+		\draw[wire] (sound) -- (speaker);
+	\end{tikzpicture}
+	\caption{Общая структурная схема электронных часов}
+	\label{fig:clock-structure}
+\end{figure}

@@ -1,0 +1,29 @@
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[
+		block/.style={draw,align=center,font=\small,minimum width=2.8cm,minimum height=10mm,inner sep=3pt},
+		wire/.style={-{Stealth[length=2mm]}},
+		signal/.style={font=\footnotesize,inner sep=2pt,fill=white},
+	]
+		\node[block] (f) at (3.75,0) {Преобразователь\\$F$};
+		\node[block] (memory) at (9.35,0) {Память состояния\\ЭП};
+		\node[block] (pulse) at (3.75,-2.65) {Формирователь\\$F_i$};
+		\node[block] (level) at (9.35,-2.65) {Дешифратор\\$F_L$};
+
+		\draw[wire] (0.42,0) -- node[signal,above] {$x$} (f);
+		\draw[wire] (f) -- node[signal,above] {$q^+$} (memory);
+		\draw[wire] (12.8,0) -- node[signal,above] {$f_{\mathrm{clk}}$} (memory.east);
+		\draw[wire] (memory.north) -- (9.35,1.15) --
+			node[signal,above] {$q$} (3.75,1.15) -- (f.north);
+		\draw[wire] (f) -- node[signal,right,pos=0.28] {$y$} (pulse);
+		\draw[wire] (9.35,-0.54) -- node[signal,right] {$q$} (level);
+		\draw[wire] (0.42,-1.41) -- node[signal,above] {$s$}
+			(2.05,-1.41) -- (2.05,-2.65) -- (pulse);
+		\draw[wire] (2.05,-1.41) -- (7.14,-1.41) -- (7.14,-0.28) -- (memory.west |- 0,-0.28);
+		\fill (2.05,-1.41) circle (1.3pt);
+		\draw[wire] (pulse.south) -- node[signal,right] {$i_1,\ldots,i_{10}$} ++(0,-0.78);
+		\draw[wire] (level.south) -- node[signal,right] {$L_1,\ldots,L_8$} ++(0,-0.78);
+	\end{tikzpicture}
+	\caption{Структура устройства управления}
+	\label{fig:clock-controller}
+\end{figure}
